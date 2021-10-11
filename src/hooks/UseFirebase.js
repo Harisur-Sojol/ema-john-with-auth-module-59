@@ -22,11 +22,13 @@ const useFirebase = () => {
     }
 
     useEffect( () => {
-        onAuthStateChanged(auth, (user) => {
+      const unsubscribe = onAuthStateChanged(auth, (user) => {
+
             if(user){
                 Setuser(user)
             }
         })
+        return unsubscribe;
     }, [])
 
     return {user, signInUsingGoogle, logOut}
